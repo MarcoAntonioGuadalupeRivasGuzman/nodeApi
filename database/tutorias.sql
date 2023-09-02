@@ -102,3 +102,32 @@ create table administrativo (
         on delete cascade
         on update cascade
 );
+
+create table calendarioescolar (
+    idcalendario int auto_increment primary key,
+    periodo varchar(256),
+    coordinador varchar(256),
+    inicio date,
+    fin date,
+    estatusactivo boolean,
+    encargadoctrlescolar varchar(256),
+    nombrecalendario varchar(256),
+    fkidunidadacademica int,
+    constraint `fkicalendario`
+        foreign key (fkidunidadacademica) references unidadacademica (idunidadacademica)
+        on delete cascade
+        on update cascade
+);
+
+create table grupo (
+    idgrupo int auto_increment primary key,
+    fkiddocente int, 
+    fkidmateria int,
+    fkidcalendario int,
+    constraint `fkidgrupo`
+        foreign key (fkiddocente) references docente (iddocente),
+        foreign key (fkidmateria) references materia (idmateria),
+        foreign key (fkidcalendario) references calendarioescolar (idcalendario)
+        on delete cascade
+        on update cascade
+);
