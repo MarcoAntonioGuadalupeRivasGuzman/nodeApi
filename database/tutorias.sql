@@ -188,3 +188,40 @@ create table listas (
         on delete cascade
         on update cascade
 );
+
+create table problematica (
+    idproblematica int auto_increment primary key,
+    problematica varchar(512),
+    canalizacion varchar(512),
+    respuesta varchar(512),
+    solucionado boolean,
+    tipo varchar(10),
+    grupal boolean,
+    fkidgrupo int, 
+    constraint `fkidproblematica`
+        foreign key (fkidgrupo) references grupo (idgrupo)
+        on delete cascade
+        on update cascade
+);
+
+create table constancia (
+    idconstancia int auto_increment primary key,
+    calificacion int, 
+    tutoria varchar(16),
+    grupo varchar(10),
+    fecha date,
+    motivo varchar(256),
+    fkidalumno int,
+    fkidcarrera int,
+    fkidcalendario int,
+    fkiddocente int,
+    fkidlista int, 
+    constraint `fkidconstancia`
+        foreign key (fkidalumno) references alumno (idalumno),
+        foreign key (fkidcarrera) references carrera (idcarrera),
+        foreign key (fkidcalendario) references calendarioescolar (idcalendario),
+        foreign key (fkiddocente) references docente (iddocente),
+        foreign key (fkidlista) references listas (idlista)
+        on delete cascade
+        on update cascade
+);
