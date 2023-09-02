@@ -36,7 +36,7 @@ create table persona (
         on update cascade
 );
 
-create table meteria (
+create table materia (
     idmateria int auto_increment primary key,
     nombremateria varchar(256),
     grupo varchar(10),
