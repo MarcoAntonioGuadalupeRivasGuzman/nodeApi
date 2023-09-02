@@ -1,13 +1,14 @@
 import { Router } from "express";
+import { createUsers, deleteUsers, getUsers, updateUsers } from "../controllers/userControllers.js";
 
 const rutas=Router();
 
-rutas.get('/employees', (req,res)=> res.send('obteniendo empleados'));
+rutas.get('/users', getUsers);
 
-rutas.post('/employees', (req,res)=> res.send('creando empleados'));
+rutas.post('/users', createUsers );
 
-rutas.put('/employees', (req,res)=> res.send('obteniendo empleados'));
+rutas.put('/users', updateUsers );
 
-rutas.delete('/employees', (req,res)=> res.send('borrando empleados'));
+rutas.delete('/users', deleteUsers );
 
 export default rutas;
