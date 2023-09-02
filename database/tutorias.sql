@@ -164,3 +164,27 @@ create table alumnogrupo (
         on delete cascade
         on update cascade
 );
+
+create table desercion (
+    iddesercion int auto_increment primary key,
+    motivo varchar(256),
+    fkidgrupo int,
+    fkidalumno int,
+    constraint `fkiddesercion`
+        foreign key (fkidgrupo) references grupo (idgrupo),
+        foreign key (fkidalumno) references alumno (idalumno)
+        on delete cascade
+        on update cascade
+);
+
+create table listas (
+    idlista int auto_increment primary key,
+    calificacion int,
+    fkidgrupo int,
+    fkidalumno int,
+    constraint `fkidlistas`
+        foreign key (fkidgrupo) references grupo (idgrupo),
+        foreign key (fkidalumno) references alumno (idalumno)
+        on delete cascade
+        on update cascade
+);
