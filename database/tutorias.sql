@@ -131,3 +131,36 @@ create table grupo (
         on delete cascade
         on update cascade
 );
+
+create table fichamedica (
+    idfichamedica int auto_increment primary key,
+    tiposangre varchar(5),
+    anteojos boolean,
+    problemaauditivo boolean,
+    protesis boolean,
+    alergias boolean,
+    enfermedadcronica boolean,
+    tomamedicamento boolean,
+    numsegurosocial varchar(20),
+    vigenciasegurosocial date,
+    clinicasegurosocial varchar(256),
+    viviconpadres boolean,
+    pareja boolean,
+    estres boolean,
+    fkidpersona int,
+    constraint `fkidfichamedica`
+        foreign key (fkidpersona) references persona (idpersona)
+        on delete cascade
+        on update cascade
+);
+
+create table alumnogrupo (
+    idalumnogrupo int auto_increment primary key,
+    fkidalumno int,
+    fkidgrupo int,
+    constraint `fkidalumnogrupo`
+        foreign key (fkidalumno) references alumno (idalumno),
+        foreign key (fkidgrupo) references grupo (idgrupo)
+        on delete cascade
+        on update cascade
+);
