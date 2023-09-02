@@ -22,3 +22,30 @@ create table unidadacademica (
     nombre varchar(256)
 );
 
+create table persona (
+    idpersona int auto_increment primary key,
+    nombres varchar(256),
+    apellidop varchar(256),
+    apellidom varchar(256),
+    codigo varchar(12),
+    correoinstitucional varchar(256),
+    fkidunidadacademica int,
+    constraint `fkidunidadacademica`
+        foreign key (fkidunidadacademica) references unidadacademica (idunidadacademica)
+        on delete cascade
+        on update cascade
+);
+
+create table meteria (
+    idmateria int auto_increment primary key,
+    nombremateria varchar(256),
+    grupo varchar(10),
+    semestre varchar(10),
+    turno varchar(10),
+    fkidcarrera int,
+    constraint `fkidcarrera`
+        foreign key (fkidcarrera) references carrera (idcarrera)
+        on delete cascade
+        on update cascade
+);
+
