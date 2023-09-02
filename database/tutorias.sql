@@ -72,3 +72,33 @@ create table docente (
         on delete cascade
         on update cascade
 );
+
+create table datospersonales (
+    iddatos int auto_increment primary key,
+    fechanacimiento date,
+    celular varchar(15),
+    direccion varchar(256),
+    genero varchar(10),
+    estadocivil varchar(256),
+    numhijos int, 
+    correopersonal varchar(256),
+    telefonofamiliar varchar(15),
+    actividadlaboral boolean,
+    empresa varchar(256),
+    horariotrabajo varchar(256),
+    bachillerato varchar(256),
+    fkidpersona int,
+    constraint `fkiddatospersonales`
+        foreign key (fkidpersona) references persona (idpersona)
+        on delete cascade
+        on update cascade
+);
+
+create table administrativo (
+    idadministrativo int auto_increment primary key,
+    fkidpersona int,
+    constraint `fkidadministrativo`
+        foreign key (fkidpersona) references persona (idpersona)
+        on delete cascade
+        on update cascade
+);
