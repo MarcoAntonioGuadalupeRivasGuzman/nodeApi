@@ -11,6 +11,6 @@ rutas.post('/users', createUser );
 
 rutas.put('/users', updateUsers );
 
-rutas.delete('/users', deleteUsers );
+rutas.delete('/users/:name', deleteUsers );
 
 export default rutas;
