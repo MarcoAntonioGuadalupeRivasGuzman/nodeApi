@@ -31,4 +31,13 @@ export const createUser = async (req,res)=> {
 
 export const updateUsers = (req,res)=> res.send('actualizando usuarios');
 
-export const deleteUsers = (req,res)=> res.send('borrando usuarios');
+export const deleteUsers = async (req,res)=>{
+    const user = req.params.name;
+    const [result] = await poolConexion.query('DELETE FROM login WHERE usuario=?', user);
+    if(result.affectedRows <= 0){
+        return res.status(404).json({
+            message: 'No se encontro el usuario'
+        });
+    }
+    res.sendStatus(204);
+};
