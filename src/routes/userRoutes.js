@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { createUsers, deleteUsers, getUsers, updateUsers } from "../controllers/userControllers.js";
+import { createUser, deleteUsers, getUsers, updateUsers } from "../controllers/userControllers.js";
 
 const rutas=Router();
 
 rutas.get('/users', getUsers);
 
-rutas.post('/users', createUsers );
+rutas.post('/users', createUser );
 
 rutas.put('/users', updateUsers );
 
