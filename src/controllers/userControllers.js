@@ -1,8 +1,9 @@
 import { poolConexion } from "../conexion.js";
 
 
-export const getUsers = (req,res)=> {
-    res.send('obteniendo usuarios')
+export const getUsers = async (req,res)=> {
+    const [rows]=await poolConexion.query('SELECT * FROM login');
+    res.json(rows);
 };
 
 export const createUser = async (req,res)=> {
