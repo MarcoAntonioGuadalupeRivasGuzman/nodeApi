@@ -4,6 +4,8 @@ import userRutes from './routes/userRoutes.js';
 
 const app= express();
 
+app.use(express.json());
+
 app.get('/test', async (req, res)=>{
     const [result] = await poolConexion.query('SELECT 1+1 AS result')
     res.json(result);
