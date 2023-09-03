@@ -11,7 +11,7 @@ app.get('/test', async (req, res)=>{
     res.json(result);
 });
 
-app.use(userRutes);
+app.use('/api',userRutes);
 
 
 
