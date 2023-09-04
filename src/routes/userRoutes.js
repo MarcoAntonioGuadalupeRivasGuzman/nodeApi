@@ -9,7 +9,7 @@ rutas.get('/users/:name', getUserByName);
 
 rutas.post('/users', createUser );
 
-rutas.put('/users', updateUsers );
+rutas.put('/users/:name', updateUsers );
 
 rutas.delete('/users/:name', deleteUsers );
 
