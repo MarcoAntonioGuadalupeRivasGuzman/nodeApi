@@ -29,7 +29,19 @@ export const createUser = async (req,res)=> {
         recover
     })};
 
-export const updateUsers = (req,res)=> res.send('actualizando usuarios');
+export const updateUsers = async (req,res)=>{
+    const {name} = req.params;
+    const {user, nombre, pass, tipo, recover} = req.body;
+    console.log(user,nombre,pass,tipo,recover);
+    const [result] = await poolConexion.query('UPDATE login SET usuario=?, nombre=?, password=?, tipo=?, recover=? WHERE usuario=?', [user,nombre,pass,tipo,recover, name]);
+    if(result.affectedRows === 0){
+        return res.status(404).json({
+            message: 'No se encontro el usuario'
+        });
+    }
+    const [rows]= await poolConexion.query('SELECT * FROM login WHERE usuario=?',user);
+    res.json(rows[0]);
+} 
 
 export const deleteUsers = async (req,res)=>{
     const user = req.params.name;
