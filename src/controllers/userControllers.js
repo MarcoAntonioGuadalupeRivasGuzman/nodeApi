@@ -8,6 +8,7 @@ export const getUsers = async (req,res)=> {
 
 export const getUserByName = async (req, res)=> {
     const user = req.params.name;
+    try{
     const [rows] = await poolConexion.query('SELECT * FROM login WHERE usuario=?',user);
     if(rows.length<=0){
         return res.status(404).json({
@@ -15,6 +16,9 @@ export const getUserByName = async (req, res)=> {
         });
     }
     res.json(rows[0]);
+    }catch(error){
+        return res.status(500).json({message: error.message});
+    }
 }
 
 export const createUser = async (req,res)=> {
