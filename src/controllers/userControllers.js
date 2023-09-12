@@ -58,6 +58,7 @@ export const updateUsers = async (req,res)=>{
 
 export const deleteUsers = async (req,res)=>{
     const user = req.params.name;
+    try{
     const [result] = await poolConexion.query('DELETE FROM login WHERE usuario=?', user);
     if(result.affectedRows <= 0){
         return res.status(404).json({
@@ -65,4 +66,7 @@ export const deleteUsers = async (req,res)=>{
         });
     }
     res.sendStatus(204);
+    }catch(error){
+        return res.status(500).json({message: error.message});
+    }
 };
