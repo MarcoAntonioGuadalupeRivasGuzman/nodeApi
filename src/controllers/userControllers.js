@@ -23,6 +23,7 @@ export const getUserByName = async (req, res)=> {
 
 export const createUser = async (req,res)=> {
     const {user, nombre, pass, tipo, recover} = req.body;
+    try{
     const [rows] = await poolConexion.query('INSERT INTO login (usuario, nombre,password,tipo,recover ) VALUES (?,?,?,?,?)', [user, nombre, pass, tipo, recover]);
     res.send({
         id: rows.insertId,
@@ -31,7 +32,11 @@ export const createUser = async (req,res)=> {
         pass,
         tipo,
         recover
-    })};
+    });
+    }catch(error){
+        return res.status(500).json({message: error.message});
+    }
+};
 
 export const updateUsers = async (req,res)=>{
     const {name} = req.params;
